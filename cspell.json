@@ -1,6 +1,7 @@
 {
     "version": "0.1",
     "words": [
+        "Coord",
         "cuon",
         "DONT",
         "fovy",
@@ -8,6 +9,7 @@
         "fshader",
         "kanda",
         "matsuda",
+        "redflower",
         "Renderbuffers",
         "rlen",
         "vshader",
