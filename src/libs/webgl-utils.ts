@@ -165,13 +165,13 @@ export module WebGLUtils {
  * way.
  */
 if (!window.requestAnimationFrame) {
-  window.requestAnimationFrame = (function() {
+  window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
+      window["webkitRequestAnimationFrame"] ||
       window["mozRequestAnimationFrame"] ||
       window["oRequestAnimationFrame"] ||
       window["msRequestAnimationFrame"] ||
-      function(/* function FrameRequestCallback */ callback: FrameRequestCallback, /* DOMElement Element */ element?): number {
+      function (/* function FrameRequestCallback */ callback: FrameRequestCallback, /* DOMElement Element */ element?): number {
         return window.setTimeout(callback, 1000 / 60);
       };
   })();
@@ -183,7 +183,7 @@ if (!window.requestAnimationFrame) {
  * Checks for cross-browser support, falls back to clearTimeout. 
  * @param {number}  Animation frame request. */
 if (!window.cancelAnimationFrame) {
-  window.cancelAnimationFrame = (window.webkitCancelAnimationFrame ||
+  window.cancelAnimationFrame = (window["webkitCancelAnimationFrame"] ||
     window["cancelRequestAnimationFrame"] || window["webkitCancelRequestAnimationFrame"] ||
     window["mozCancelAnimationFrame"] || window["mozCancelRequestAnimationFrame"] ||
     window["msCancelAnimationFrame"] || window["msCancelRequestAnimationFrame"] ||
