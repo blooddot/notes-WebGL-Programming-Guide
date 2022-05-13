@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webgl</title>
 </head>
+
 <body>
     <div id="course" class="sidenav"></div>
     <div class="content">
@@ -16,47 +18,56 @@
     const array = [
         [
             '点',
-            ['DrawingRectangle','samples/2.1DrawingRectangle/DrawingRectangle.html'],
-            ['HelloCanvas','samples/2.2HelloCanvas/HelloCanvas.html'],
-            ['HelloPoint1','samples/2.3HelloPoint1/HelloPoint1.html'],
-            ['HelloPoint2','samples/2.4HelloPoint2/HelloPoint2.html'],
-            ['ClickedPoint','samples/2.5ClickedPoint/ClickedPoint.html'],
-            ['ColoredPoints','samples/2.6ColoredPoints/ColoredPoints.html'],
+            ['DrawingRectangle', 'samples/2.1DrawingRectangle/DrawingRectangle.html'],
+            ['HelloCanvas', 'samples/2.2HelloCanvas/HelloCanvas.html'],
+            ['HelloPoint1', 'samples/2.3HelloPoint1/HelloPoint1.html'],
+            ['HelloPoint2', 'samples/2.4HelloPoint2/HelloPoint2.html'],
+            ['ClickedPoint', 'samples/2.5ClickedPoint/ClickedPoint.html'],
+            ['ColoredPoints', 'samples/2.6ColoredPoints/ColoredPoints.html'],
         ],
         [
             '三角形',
-            ['MultiPoint','samples/3.1MultiPoint/MultiPoint.html'],
-            ['HelloTriangle','samples/3.2HelloTriangle/HelloTriangle.html'],
-            ['HelloQuad','samples/3.3HelloQuad/HelloQuad.html'],
-            ['HelloQuad_FAN','samples/3.4HelloQuad_FAN/HelloQuad_FAN.html'],
-            ['TranslatedTriangle','samples/3.5TranslatedTriangle/TranslatedTriangle.html'],
-            ['RotatedTriangle','samples/3.6RotatedTriangle/RotatedTriangle.html'],
-            ['RotatedTriangle_Matrix','samples/3.7RotatedTriangle_Matrix/RotatedTriangle_Matrix.html'],
-            ['TranslatedTriangle_Matrix','samples/3.8TranslatedTriangle_Matrix/TranslatedTriangle_Matrix.html'],
-            ['ScaleTriangle_Matrix','samples/3.9ScaleTriangle_Matrix/ScaleTriangle_Matrix.html'],
+            ['MultiPoint', 'samples/3.1MultiPoint/MultiPoint.html'],
+            ['HelloTriangle', 'samples/3.2HelloTriangle/HelloTriangle.html'],
+            ['HelloQuad', 'samples/3.3HelloQuad/HelloQuad.html'],
+            ['HelloQuad_FAN', 'samples/3.4HelloQuad_FAN/HelloQuad_FAN.html'],
+            ['TranslatedTriangle', 'samples/3.5TranslatedTriangle/TranslatedTriangle.html'],
+            ['RotatedTriangle', 'samples/3.6RotatedTriangle/RotatedTriangle.html'],
+            ['RotatedTriangle_Matrix', 'samples/3.7RotatedTriangle_Matrix/RotatedTriangle_Matrix.html'],
+            ['TranslatedTriangle_Matrix', 'samples/3.8TranslatedTriangle_Matrix/TranslatedTriangle_Matrix.html'],
+            ['ScaleTriangle_Matrix', 'samples/3.9ScaleTriangle_Matrix/ScaleTriangle_Matrix.html'],
         ],
         [
             "高级变换",
-            ['RotatedTriangles_Matrix4','samples/4.1RotatedTriangles_Matrix4/RotatedTriangles_Matrix4.html'],
-            ['RotatedTranslatedTriangle','samples/4.2RotatedTranslatedTriangle/RotatedTranslatedTriangle.html'],
-            ['RotatingTriangle','samples/4.3RotatingTriangle/RotatingTriangle.html'],
-            ['RotatingTriangle_withButtons','samples/4.4RotatingTriangle_withButtons/RotatingTriangle_withButtons.html'],
+            ['RotatedTriangles_Matrix4', 'samples/4.1RotatedTriangles_Matrix4/RotatedTriangles_Matrix4.html'],
+            ['RotatedTranslatedTriangle', 'samples/4.2RotatedTranslatedTriangle/RotatedTranslatedTriangle.html'],
+            ['RotatingTriangle', 'samples/4.3RotatingTriangle/RotatingTriangle.html'],
+            ['RotatingTriangle_withButtons', 'samples/4.4RotatingTriangle_withButtons/RotatingTriangle_withButtons.html'],
         ],
         [
             "颜色与纹理",
-            ['MultiAttributeSize','samples/5.1MultiAttributeSize/MultiAttributeSize.html'],
-            ['MultiAttributeSize_Interleaved','samples/5.2MultiAttributeSize_Interleaved/MultiAttributeSize_Interleaved.html'],
-            ['MultiAttributeColor','samples/5.3MultiAttributeColor/MultiAttributeColor.html'],
-            ['ColoredTriangle','samples/5.4ColoredTriangle/ColoredTriangle.html'],
-            ['HelloTriangle_FragCoord','samples/5.5HelloTriangle_FragCoord/HelloTriangle_FragCoord.html'],
-            ['TexturedQuad','samples/5.6TexturedQuad/TexturedQuad.html'],
-            ['TexturedQuad_Repeat','samples/5.7TexturedQuad_Repeat/TexturedQuad_Repeat.html'],
-            ['TexturedQuad_Clamp_Mirror','samples/5.8TexturedQuad_Clamp_Mirror/TexturedQuad_Clamp_Mirror.html'],
-            ['MultiTexture','samples/5.9MultiTexture/MultiTexture.html'],
+            ['MultiAttributeSize', 'samples/5.1MultiAttributeSize/MultiAttributeSize.html'],
+            ['MultiAttributeSize_Interleaved', 'samples/5.2MultiAttributeSize_Interleaved/MultiAttributeSize_Interleaved.html'],
+            ['MultiAttributeColor', 'samples/5.3MultiAttributeColor/MultiAttributeColor.html'],
+            ['ColoredTriangle', 'samples/5.4ColoredTriangle/ColoredTriangle.html'],
+            ['HelloTriangle_FragCoord', 'samples/5.5HelloTriangle_FragCoord/HelloTriangle_FragCoord.html'],
+            ['TexturedQuad', 'samples/5.6TexturedQuad/TexturedQuad.html'],
+            ['TexturedQuad_Repeat', 'samples/5.7TexturedQuad_Repeat/TexturedQuad_Repeat.html'],
+            ['TexturedQuad_Clamp_Mirror', 'samples/5.8TexturedQuad_Clamp_Mirror/TexturedQuad_Clamp_Mirror.html'],
+            ['MultiTexture', 'samples/5.9MultiTexture/MultiTexture.html'],
         ],
         [
             "三维世界",
-            ['MultiAttributeSize','samples/7.1LookAtTriangles/LookAtTriangles.html'],
+            ['LookAtTriangles', 'samples/7.1LookAtTriangles/LookAtTriangles.html'],
+            ['LookAtRotatedTriangles', 'samples/7.2LookAtRotatedTriangles/LookAtRotatedTriangles.html'],
+            ['LookAtRotatedTriangles_mvMatrix', 'samples/7.3LookAtRotatedTriangles_mvMatrix/LookAtRotatedTriangles_mvMatrix.html'],
+            ['LookAtTrianglesWithKeys', 'samples/7.4LookAtTrianglesWithKeys/LookAtTrianglesWithKeys.html'],
+            ['OrthoView', 'samples/7.5OrthoView/OrthoView.html'],
+            ['LookAtTrianglesWithKeys_ViewVolume', 'samples/7.6LookAtTrianglesWithKeys_ViewVolume/LookAtTrianglesWithKeys_ViewVolume.html'],
+            ['OrthoView_halfSize', 'samples/7.7OrthoView_halfSize/OrthoView_halfSize.html'],
+            ['PerspectiveView', 'samples/7.8PerspectiveView/PerspectiveView.html'],
+            ['PerspectiveView_mvp', 'samples/7.9PerspectiveView_mvp/PerspectiveView_mvp.html'],
+            ['PerspectiveView_mvpMatrix', 'samples/7.10PerspectiveView_mvpMatrix/PerspectiveView_mvpMatrix.html'],
 
         ]
     ];
@@ -71,9 +82,9 @@
         const summary = document.createElement('summary');
         details.appendChild(summary);
         summary.textContent = title;
-        summary.className = index %2===1? "active":""
+        summary.className = index % 2 === 1 ? "active" : ""
 
-        items.forEach(value=>{
+        items.forEach(value => {
             const [name, href] = value;
             const a = document.createElement('a');
             details.appendChild(a);
@@ -81,9 +92,9 @@
             a.href = href;
             a.nodeValue = href;
 
-            a.addEventListener('click', function(e) {
+            a.addEventListener('click', function (e) {
                 e.preventDefault();
-                if(selectArrow){
+                if (selectArrow) {
                     selectArrow.className = "";
                 }
                 selectArrow = e.target;
@@ -94,7 +105,9 @@
     });
 </script>
 <style>
-    body {margin: 0;}
+    body {
+        margin: 0;
+    }
 
     div.sidenav {
         list-style-type: none;
@@ -113,7 +126,7 @@
         padding: 8px 16px;
         text-decoration: none;
     }
-    
+
     div.sidenav summary.active {
         background-color: #d5d5d5;
     }
@@ -145,11 +158,15 @@
             height: auto;
             position: relative;
         }
+
         ul.sidenav li a {
             float: left;
             padding: 15px;
         }
-        div.content {margin-left: 0;}
+
+        div.content {
+            margin-left: 0;
+        }
     }
 
     @media screen and (max-width: 400px) {
@@ -159,4 +176,5 @@
         }
     }
 </style>
+
 </html>

@@ -3,5 +3,6 @@
         "**/node_modules": true
     },
     "eslint.alwaysShowStatus": true,
-    "eslint.run": "onSave"
+    "eslint.run": "onSave",
+    "livePreview.defaultPreviewPath": "/src/index.html"
 }

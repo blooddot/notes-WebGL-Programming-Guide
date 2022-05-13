@@ -22,12 +22,12 @@ export const loadGLSL = async (name: string): Promise<{ vertex: string, fragment
     return { vertex, fragment };
 };
 
-export const initWebGL = async (name: string) => {
+export const initWebGL = async (name: string, offsetWidth: number = 0, offsetHeight: number = 0) => {
     const { vertex, fragment } = await loadGLSL(name);
 
     const canvas = document.getElementById("webgl") as HTMLCanvasElement;
-    canvas.setAttribute("width", document.body.clientWidth.toString());
-    canvas.setAttribute("height", document.body.clientHeight.toString());
+    canvas.setAttribute("width", (document.body.clientWidth + offsetWidth).toString());
+    canvas.setAttribute("height", (document.body.clientHeight + offsetHeight).toString());
 
     const gl = getWebGLContext(canvas);
     if (!gl) {

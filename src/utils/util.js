@@ -24,11 +24,11 @@ export const loadGLSL = (name) => __awaiter(void 0, void 0, void 0, function* ()
     const [vertex, fragment] = yield Promise.all(promises);
     return { vertex, fragment };
 });
-export const initWebGL = (name) => __awaiter(void 0, void 0, void 0, function* () {
+export const initWebGL = (name, offsetWidth = 0, offsetHeight = 0) => __awaiter(void 0, void 0, void 0, function* () {
     const { vertex, fragment } = yield loadGLSL(name);
     const canvas = document.getElementById("webgl");
-    canvas.setAttribute("width", document.body.clientWidth.toString());
-    canvas.setAttribute("height", document.body.clientHeight.toString());
+    canvas.setAttribute("width", (document.body.clientWidth + offsetWidth).toString());
+    canvas.setAttribute("height", (document.body.clientHeight + offsetHeight).toString());
     const gl = getWebGLContext(canvas);
     if (!gl) {
         console.error('Failed to get the rendering context for WebGL');
