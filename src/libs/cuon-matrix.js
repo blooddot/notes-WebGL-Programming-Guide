@@ -605,19 +605,20 @@ export class Matrix4 {
      * @param upX, upY, upZ The direction of the up vector.
      * @return this
      */
-    setLookAt(eyePos, centerPos, upPos) {
-        let fx = centerPos.x - eyePos.x;
-        let fy = centerPos.y - eyePos.y;
-        let fz = centerPos.z - eyePos.z;
+    // eslint-disable-next-line max-params
+    setLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ) {
+        let fx = centerX - eyeX;
+        let fy = centerY - eyeY;
+        let fz = centerZ - eyeZ;
         // Normalize f.
         const rlf = 1 / Math.sqrt(fx * fx + fy * fy + fz * fz);
         fx *= rlf;
         fy *= rlf;
         fz *= rlf;
         // Calculate cross product of f and up.
-        let sx = fy * upPos.z - fz * upPos.y;
-        let sy = fz * upPos.x - fx * upPos.z;
-        let sz = fx * upPos.y - fy * upPos.x;
+        let sx = fy * upZ - fz * upY;
+        let sy = fz * upX - fx * upZ;
+        let sz = fx * upY - fy * upX;
         // Normalize s.
         const rls = 1 / Math.sqrt(sx * sx + sy * sy + sz * sz);
         sx *= rls;
@@ -646,7 +647,7 @@ export class Matrix4 {
         e[14] = 0;
         e[15] = 1;
         // Translate.
-        return this.translate(-eyePos.x, -eyePos.y, -eyePos.z);
+        return this.translate(-eyeX, -eyeY, -eyeZ);
     }
     /**
      * Multiply the viewing matrix from the right.
@@ -655,8 +656,9 @@ export class Matrix4 {
      * @param upX, upY, upZ The direction of the up vector.
      * @return this
      */
-    lookAt(eyePos, centerPos, upPos) {
-        return this.concat(new Matrix4().setLookAt(eyePos, centerPos, upPos));
+    // eslint-disable-next-line max-params
+    lookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ) {
+        return this.concat(new Matrix4().setLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ));
     }
     /**
      * Multiply the matrix for project vertex to plane from the right.
@@ -693,9 +695,10 @@ export class Matrix4 {
      * @param lightX, lightY, lightZ The vector of the direction of light.(Not necessary to be normalized.)
      * @return this
      */
-    dropShadowDirectionally(normVec3, planeVec3, lightVec3) {
-        const a = planeVec3.x * normVec3.x + planeVec3.y * normVec3.y + planeVec3.z * normVec3.z;
-        return this.dropShadow([normVec3.x, normVec3.y, normVec3.z, -a], [lightVec3.x, lightVec3.y, lightVec3.z, 0]);
+    // eslint-disable-next-line max-params
+    dropShadowDirectionally(normX, normY, normZ, planeX, planeY, planeZ, lightX, lightY, lightZ) {
+        const a = planeX * normX + planeY * normY + planeZ * normZ;
+        return this.dropShadow([normX, normY, normZ, -a], [lightX, lightY, lightZ, 0]);
     }
 }
 /**

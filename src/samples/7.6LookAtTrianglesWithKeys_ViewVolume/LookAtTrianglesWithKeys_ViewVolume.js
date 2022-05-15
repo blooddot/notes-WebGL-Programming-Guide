@@ -45,7 +45,7 @@ function keyDown(ev, gl, n, u_ViewMatrix, viewMatrix) {
     draw(gl, n, u_ViewMatrix, viewMatrix);
 }
 function draw(gl, n, u_ViewMatrix, viewMatrix) {
-    viewMatrix.setLookAt({ x: g_eyeX, y: g_eyeY, z: g_eyeZ }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+    viewMatrix.setLookAt(g_eyeX, g_eyeY, g_eyeZ, 0, 0, 0, 0, 1, 0);
     //将视图矩阵传给 u_ViewMatrix 变量
     gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
     gl.clearColor(0.0, 0.0, 0.0, 1.0);

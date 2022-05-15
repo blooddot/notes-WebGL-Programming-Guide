@@ -22,7 +22,7 @@ window.onload = function () {
         const projMatrix = new Matrix4();
         projMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100);
         const viewMatrix = new Matrix4();
-        viewMatrix.setLookAt({ x: 0, y: 0, z: 5 }, { x: 0, y: 0, z: -100 }, { x: 0, y: 1, z: 0 });
+        viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
         const modelMatrix = new Matrix4();
         modelMatrix.setTranslate(0.75, 0, 0); //平移 0.75 单位
         const mvpMatrix = new Matrix4();

@@ -18,12 +18,12 @@ window.onload = function () {
         const { gl, program } = yield initWebGL("LookAtRotatedTriangles_mvMatrix");
         const n = initVertexBuffers(gl, program);
         // const viewMatrix = new Matrix4();
-        // viewMatrix.setLookAt({ x: 0.20, y: 0.25, z: 0.25 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+        // viewMatrix.setLookAt(0.20, 0.25, 0.25, 0, 0, 0, 0, 1, 0);
         // const modelMatrix = new Matrix4();
         // modelMatrix.setRotate(-10, 0, 0, 1);//Rotate around z-axis
         // const modelViewMatrix = viewMatrix.multiply(modelMatrix);
         const modelViewMatrix = new Matrix4();
-        modelViewMatrix.setLookAt({ x: 0.20, y: 0.25, z: 0.25 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }).rotate(-10, 0, 0, 1);
+        modelViewMatrix.setLookAt(0.20, 0.25, 0.25, 0, 0, 0, 0, 1, 0).rotate(-10, 0, 0, 1);
         const u_ModelViewMatrix = gl.getUniformLocation(program, 'u_ModelViewMatrix');
         gl.uniformMatrix4fv(u_ModelViewMatrix, false, modelViewMatrix.elements);
         gl.clearColor(0.0, 0.0, 0.0, 1.0);

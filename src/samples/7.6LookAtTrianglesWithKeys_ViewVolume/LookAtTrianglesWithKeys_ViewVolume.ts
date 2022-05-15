@@ -40,7 +40,7 @@ function keyDown(ev: KeyboardEvent, gl: WebGLRenderingContext, n: number, u_View
 }
 
 function draw(gl: WebGLRenderingContext, n: number, u_ViewMatrix: WebGLUniformLocation, viewMatrix: Matrix4) {
-    viewMatrix.setLookAt({ x: g_eyeX, y: g_eyeY, z: g_eyeZ }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+    viewMatrix.setLookAt(g_eyeX, g_eyeY, g_eyeZ, 0, 0, 0, 0, 1, 0);
     //将视图矩阵传给 u_ViewMatrix 变量
     gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
 
