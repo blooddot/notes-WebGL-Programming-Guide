@@ -706,7 +706,7 @@ export class Matrix4 {
  * If opt_src is specified, new vector is initialized by opt_src.
  * @param opt_src source vector(option)
  */
-class Vector3 {
+export class Vector3 {
     constructor(opt_src) {
         const v = new Float32Array(3);
         if (opt_src) {
