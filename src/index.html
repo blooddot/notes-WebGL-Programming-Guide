@@ -6,12 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webgl</title>
+    <link rel="stylesheet" href="/libs/highlight/github.min.css">
+    <script src="/libs/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 
 <body>
     <div id="course" class="sidenav"></div>
     <div class="content">
-        <iframe id="webgl"></iframe>
+        <div class="col-content">
+            <div class="row-content">
+                <iframe id="webgl"></iframe>
+                <figure>
+                    <figcaption>Typescript:</figcaption>
+                    <pre class="tscode-container">
+                        <code id="tscode" class="language-TypeScript"></code>
+                    </pre>
+                </figure>
+            </div>
+            <div class="row-content">
+                <figure class="glsl-figure">
+                    <figcaption>Vertex:</figcaption>
+                    <pre class="vscode-container">
+                        <code id="vscode" class="language-glsl hljs"></code>
+                    </pre>
+                </figure>
+                <figure class="glsl-figure">
+                    <figcaption>Fragment:</figcaption>
+                    <pre class="fscode-container">
+                        <code id="fscode" class="language-glsl hljs"></code>
+                    </pre>
+                </figure>
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -83,8 +110,19 @@
         ]
     ];
 
+    async function fetchCode(path) {
+        return fetch(path).then(res => {
+            if (!res.ok) return '';
+
+            return res.text()
+        });
+    }
+
     const course = document.getElementById('course');
     const webgl = document.getElementById('webgl');
+    const tscode = document.getElementById('tscode')
+    const vscode = document.getElementById('vscode')
+    const fscode = document.getElementById('fscode')
     let selectArrow;
     array.forEach((element, index) => {
         const [title, ...items] = element;
@@ -111,6 +149,23 @@
                 selectArrow = e.target;
                 selectArrow.className = 'select'
                 webgl.src = selectArrow.href;
+                const dir = selectArrow.href.split('/').slice(0, -1).join('/');
+
+                fetchCode(`${dir}/${selectArrow.text}.ts`).then(value => {
+                    tscode.innerHTML = value;
+                    hljs.highlightElement(tscode);
+                });
+
+                fetchCode(`${dir}/${selectArrow.text}.vs`).then(value => {
+                    console.log(value)
+                    vscode.innerHTML = value;
+                    hljs.highlightElement(vscode);
+                });
+
+                fetchCode(`${dir}/${selectArrow.text}.fs`).then(value => {
+                    fscode.innerHTML = value;
+                    hljs.highlightElement(fscode);
+                });
             }, false);
         });
     });
@@ -118,6 +173,7 @@
 <style>
     body {
         margin: 0;
+        overflow: hidden;
     }
 
     div.sidenav {
@@ -153,14 +209,56 @@
     }
 
     div.content {
+        display: flex;
         margin-left: 25%;
         padding: 1px 16px;
-        height: 1000px;
+    }
+
+    div.row-content {
+        display: flex;
+        flex-direction: row;
+    }
+
+    div .col-content {
+        display: flex;
+        flex-direction: column;
     }
 
     div.content iframe {
         width: 500px;
         height: 500px;
+    }
+
+    .tscode-container {
+        margin-top: 0;
+        width: 700px;
+        height: 420px;
+    }
+
+    .vscode-container {
+        margin-top: 0;
+        width: 600px;
+        height: 300px;
+    }
+
+    .fscode-container {
+        margin-top: 0;
+        width: 600px;
+        height: 300px;
+    }
+
+    .glsl-figure {
+        margin-left: 0;
+    }
+
+    figcaption {
+        margin-bottom: 0;
+    }
+
+    div.content code {
+        background-color: #f3f3f3;
+        width: 100%;
+        height: 100%;
     }
 
     @media screen and (max-width: 900px) {
