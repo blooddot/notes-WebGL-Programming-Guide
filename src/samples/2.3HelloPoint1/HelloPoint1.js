@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getWebGLContext, initShaders } from '../../libs/cuon-utils.js';
+import { getWebGLContext, initShaders } from '../../../libs/cuon/cuon-utils.js';
 import { loadGLSL } from '../../utils/util.js';
 window.onload = () => __awaiter(void 0, void 0, void 0, function* () {
     const { vertex, fragment } = yield loadGLSL("HelloPoint1");

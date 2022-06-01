@@ -1,4 +1,4 @@
-import { getWebGLContext } from '../../libs/cuon-utils.js';
+import { getWebGLContext } from '../../../libs/cuon/cuon-utils.js';
 
 window.onload = () => {
     const canvas = document.getElementById("webgl") as HTMLCanvasElement;

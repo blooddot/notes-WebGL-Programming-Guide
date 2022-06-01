@@ -1,4 +1,4 @@
-import { Matrix4 } from '../../libs/cuon-matrix.js';
+import { Matrix4 } from '../../../libs/cuon/cuon-matrix.js';
 import { initWebGL } from '../../utils/util.js';
 
 let angle_step = 45.0;

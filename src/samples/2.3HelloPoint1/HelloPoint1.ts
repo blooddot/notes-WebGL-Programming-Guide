@@ -1,4 +1,4 @@
-import { getWebGLContext, initShaders } from '../../libs/cuon-utils.js';
+import { getWebGLContext, initShaders } from '../../../libs/cuon/cuon-utils.js';
 import { loadGLSL } from '../../utils/util.js';
 
 window.onload = async () => {

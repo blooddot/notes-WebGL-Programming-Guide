@@ -1,4 +1,4 @@
-import { getWebGLContext, initShaders } from '../libs/cuon-utils.js';
+import { getWebGLContext, initShaders } from '../../libs/cuon/cuon-utils.js';
 
 export const loadFile = async (url: string): Promise<string> => {
     const content = await fetch(url).then(response => response.text());

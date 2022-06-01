@@ -1,4 +1,4 @@
-import { Matrix4, Vector3 } from "../../libs/cuon-matrix.js";
+import { Matrix4, Vector3 } from "../../../libs/cuon/cuon-matrix.js";
 import { initWebGL } from "../../utils/util.js";
 
 /**

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Matrix4, Vector3 } from "../../libs/cuon-matrix.js";
+import { Matrix4, Vector3 } from "../../../libs/cuon/cuon-matrix.js";
 import { initWebGL } from "../../utils/util.js";
 /**
  * @author 雪糕
