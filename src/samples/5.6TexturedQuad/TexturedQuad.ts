@@ -1,20 +1,19 @@
 import { initWebGL } from '../../utils/util.js';
 
 window.onload = async () => {
-    const n = 4;//顶点数量
 
     const { gl, program } = await initWebGL("TexturedQuad");
 
-    initVertexBuffers(gl, program);
+    const vertexCount = initVertexBuffers(gl, program);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    initTexture(gl, program, n);
+    initTexture(gl, program, vertexCount);
 };
 
 const initVertexBuffers = (gl: WebGLRenderingContext, program: WebGLProgram) => {
     //顶点坐标，纹理坐标
-    const verticesColors = new Float32Array([
+    const verticesTexCoords = new Float32Array([
         -0.5, 0.5, 0.0, 1.0,
         -0.5, -0.5, 0.0, 0.0,
         0.5, 0.5, 1.0, 1.0,
@@ -25,19 +24,25 @@ const initVertexBuffers = (gl: WebGLRenderingContext, program: WebGLProgram) => 
         // 0.5, -0.5, 1.7, -0.2
     ]);
 
-    //创建缓冲区对象
-    const vertexTexCoordBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);    //将缓冲区对象绑定到目标
-    gl.bufferData(gl.ARRAY_BUFFER, verticesColors, gl.STATIC_DRAW);    //向缓冲区对象写入数据
+    const vertexBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ARRAY_BUFFER, verticesTexCoords, gl.STATIC_DRAW);//向缓冲区对象写入顶点坐标和纹理坐标
 
-    const F_SIZE = verticesColors.BYTES_PER_ELEMENT;
-    const a_Position = gl.getAttribLocation(program, 'a_Position');
-    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, F_SIZE * 4, 0);    //将缓冲区对象分配给a_Position变量
-    gl.enableVertexAttribArray(a_Position);    //连接a_Position变量与分配给它的缓冲区对象
+    const F_SIZE = verticesTexCoords.BYTES_PER_ELEMENT;
+    const vertexPositionSize = 2;//单个顶点坐标的组成数量
+    const vertexTexCoordSize = 2;//单个顶点纹理坐标的组成数量
+    const vertexSize = vertexPositionSize + vertexTexCoordSize;//单个顶点的组成数量
 
-    const a_TexCoord = gl.getAttribLocation(program, 'a_TexCoord');
-    gl.vertexAttribPointer(a_TexCoord, 2, gl.FLOAT, false, F_SIZE * 4, F_SIZE * 2);
-    gl.enableVertexAttribArray(a_TexCoord);
+    const a_Position = gl.getAttribLocation(program, 'a_Position');//获取 a_Position 存储地址
+    gl.vertexAttribPointer(a_Position, vertexPositionSize, gl.FLOAT, false, F_SIZE * vertexSize, 0);//将缓冲区对象分配给 a_Position 变量
+    gl.enableVertexAttribArray(a_Position);//连接 a_Position 变量与分配给它的缓冲区对象
+
+    const a_TexCoord = gl.getAttribLocation(program, 'a_TexCoord');//获取 a_TexCoord 存储地址
+    gl.vertexAttribPointer(a_TexCoord, vertexTexCoordSize, gl.FLOAT, false, F_SIZE * vertexSize, F_SIZE * vertexPositionSize);//将缓冲区对象分配给 a_TexCoord 变量
+    gl.enableVertexAttribArray(a_TexCoord);//连接 a_TexCoord 变量与分配给它的缓冲区对象
+
+    const vertexCount = verticesTexCoords.length / vertexSize;//顶点数量
+    return vertexCount;
 };
 
 const initTexture = (gl: WebGLRenderingContext, program: WebGLProgram, n: number) => {

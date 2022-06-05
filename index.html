@@ -107,6 +107,10 @@
             ['LightedTranslatedRotatedCube', 'src/samples/8.3LightedTranslatedRotatedCube/LightedTranslatedRotatedCube.html'],
             ['PointLightedCube', 'src/samples/8.4PointLightedCube/PointLightedCube.html'],
             ['PointLightedCube_perFragment', 'src/samples/8.5PointLightedCube_perFragment/PointLightedCube_perFragment.html'],
+        ],
+        [
+            "层次模型",
+            ['JointMode', 'src/samples/9.1JointMode/JointMode.html']
         ]
     ];
 
@@ -157,7 +161,6 @@
                 });
 
                 fetchCode(`${dir}/${selectArrow.text}.vs`).then(value => {
-                    console.log(value)
                     vscode.innerHTML = value;
                     hljs.highlightElement(vscode);
                 });

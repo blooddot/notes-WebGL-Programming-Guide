@@ -1,3 +1,7 @@
+/**
+ * @author hong.guo
+ * @description 
+ */
 import { Matrix4 } from "../../../libs/cuon/cuon-matrix.js";
 import { initWebGL } from "../../utils/util.js";
 
@@ -32,6 +36,7 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
     //  | |v7---|-|v4
     //  |/      |/
     //  v2------v3
+    //顶点坐标
     const vertices = new Float32Array([   // Vertex coordinates
         1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0,  // v0-v1-v2-v3 front
         1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0,  // v0-v3-v4-v5 right
@@ -41,6 +46,7 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
         1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0   // v4-v7-v6-v5 back
     ]);
 
+    //顶点颜色
     const colors = new Float32Array([     // Colors
         0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0,  // v0-v1-v2-v3 front(blue)
         0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4,  // v0-v3-v4-v5 right(green)
@@ -50,6 +56,7 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
         0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0   // v4-v7-v6-v5 back
     ]);
 
+    //顶点索引
     const indices = new Uint8Array([       // Indices of the vertices
         0, 1, 2, 0, 2, 3,    // front
         4, 5, 6, 4, 6, 7,    // right
@@ -59,25 +66,23 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
         20, 21, 22, 20, 22, 23     // back
     ]);
 
-    const vertexColorBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    const vertexBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);//向缓冲区对象写入顶点坐标
+    const a_Position = gl.getAttribLocation(program, 'a_Position');//获取 a_Position 存储地址
+    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);//将缓冲区对象分配给 a_Position 变量
+    gl.enableVertexAttribArray(a_Position);//连接 a_Position 变量与分配给它的缓冲区对象
 
-    initArrayBuffer(gl, program, vertices, 3, gl.FLOAT, 'a_Position');
-    initArrayBuffer(gl, program, colors, 3, gl.FLOAT, 'a_Color');
+    const colorBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);//向缓冲区对象写入顶点颜色
+    const a_Color = gl.getAttribLocation(program, 'a_Color');//获取 a_Color 存储地址
+    gl.vertexAttribPointer(a_Color, 3, gl.FLOAT, false, 0, 0);//将缓冲区对象分配给 a_Color 变量
+    gl.enableVertexAttribArray(a_Color);//连接 a_Color 变量与分配给它的缓冲区对象
 
-    const indexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    const indexBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);//向缓冲区对象写入顶点索引
 
     return indices.length;
-}
-
-function initArrayBuffer(gl: WebGLRenderingContext, program: WebGLProgram, data: Float32Array, num: number, type: number, attribute: string) {
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-    const a_attribute = gl.getAttribLocation(program, attribute);
-    gl.vertexAttribPointer(a_attribute, num, type, false, 0, 0);
-    gl.enableVertexAttribArray(a_attribute);
 }

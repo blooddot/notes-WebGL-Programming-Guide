@@ -350,7 +350,7 @@ module.exports = {
         'max-nested-callbacks': [1, 3],
 
         // 函数的形参不能多于8个
-        'max-params': [1, 8],
+        'max-params': [1, 12],
 
         // 限制一行中的语句数量
         // @off 没必要限制

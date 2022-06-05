@@ -1,3 +1,7 @@
+/**
+ * @author hong.guo
+ * @description 
+ */
 import { Matrix4 } from "../../../libs/cuon/cuon-matrix.js";
 import { initWebGL } from "../../utils/util.js";
 
@@ -32,6 +36,7 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
     //  | |v7---|-|v4
     //  |/      |/
     //  v2------v3
+    //顶点坐标和颜色
     const verticesColors = new Float32Array([
         // Vertex coordinates and color
         1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  // v0 White
@@ -44,7 +49,7 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
         -1.0, -1.0, -1.0, 0.0, 0.0, 0.0   // v7 Black
     ]);
 
-    // 顶点索引
+    //顶点索引
     const indices = new Uint8Array([  //(Uint8Array)是无符号8位整型数
         0, 1, 2, 0, 2, 3,    // front
         0, 3, 4, 0, 4, 5,    // right
@@ -54,23 +59,26 @@ function initVertexBuffers(gl: WebGLRenderingContext, program: WebGLProgram) {
         4, 7, 6, 4, 6, 5     // back
     ]);
 
-    const vertexColorBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, verticesColors, gl.STATIC_DRAW);
+    const vertexColorBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ARRAY_BUFFER, verticesColors, gl.STATIC_DRAW);//向缓冲区对象写入顶点坐标和颜色数据
 
     const F_SIZE = verticesColors.BYTES_PER_ELEMENT;
+    const vertexPositionSize = 3;//单个顶点坐标的组成数量
+    const vertexColorSize = 3;//单个顶点颜色的组成数量
+    const vertexSize = vertexPositionSize + vertexColorSize;//单个顶点的组成数量
 
-    const a_Position = gl.getAttribLocation(program, 'a_Position');
-    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, F_SIZE * 6, 0);//将缓冲区对象分配给 a_Position 变量
+    const a_Position = gl.getAttribLocation(program, 'a_Position');//获取 a_Position 存储地址
+    gl.vertexAttribPointer(a_Position, vertexPositionSize, gl.FLOAT, false, F_SIZE * vertexSize, 0);//将缓冲区对象分配给 a_Position 变量
     gl.enableVertexAttribArray(a_Position);//连接 a_Position 变量与分配给它的缓冲区对象
 
-    const a_Color = gl.getAttribLocation(program, 'a_Color');
-    gl.vertexAttribPointer(a_Color, 3, gl.FLOAT, false, F_SIZE * 6, F_SIZE * 3);
-    gl.enableVertexAttribArray(a_Color);
+    const a_Color = gl.getAttribLocation(program, 'a_Color');//获取 a_Color 存储地址
+    gl.vertexAttribPointer(a_Color, vertexColorSize, gl.FLOAT, false, F_SIZE * vertexSize, F_SIZE * vertexPositionSize);//将缓冲区对象分配给 a_Color 变量
+    gl.enableVertexAttribArray(a_Color);//连接 a_Color 变量与分配给它的缓冲区对象
 
-    const indexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    const indexBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);//向缓冲区对象写入顶点索引数据
 
     return indices.length;
 }

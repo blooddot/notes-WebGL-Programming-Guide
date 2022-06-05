@@ -1,18 +1,18 @@
 import { getWebGLContext, initShaders } from '../../libs/cuon/cuon-utils.js';
 
-export const loadFile = async (url: string): Promise<string> => {
+export async function loadFile(url: string): Promise<string> {
     const content = await fetch(url).then(response => response.text());
 
     return content;
-};
+}
 
-export const loadJson = async (url: string): Promise<Record<string, unknown>> => {
+export async function loadJson(url: string): Promise<Record<string, unknown>> {
     const obj = await fetch(url).then(response => response.json());
 
     return obj;
-};
+}
 
-export const loadGLSL = async (name: string): Promise<{ vertex: string, fragment: string }> => {
+export async function loadGLSL(name: string): Promise<{ vertex: string, fragment: string }> {
     const promises = [
         loadFile(`${name}.vs`),
         loadFile(`${name}.fs`),
@@ -20,9 +20,9 @@ export const loadGLSL = async (name: string): Promise<{ vertex: string, fragment
 
     const [vertex, fragment] = await Promise.all(promises);
     return { vertex, fragment };
-};
+}
 
-export const initWebGL = async (name: string, offsetWidth: number = 0, offsetHeight: number = 0) => {
+export async function initWebGL(name: string, offsetWidth: number = 0, offsetHeight: number = 0) {
     const { vertex, fragment } = await loadGLSL(name);
 
     const canvas = document.getElementById("webgl") as HTMLCanvasElement;
@@ -42,4 +42,4 @@ export const initWebGL = async (name: string, offsetWidth: number = 0, offsetHei
     }
 
     return { gl, program, canvas };
-};
+}

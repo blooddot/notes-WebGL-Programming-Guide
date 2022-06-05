@@ -29,32 +29,18 @@ window.onload = async () => {
 };
 
 const initVertexBuffers = (gl: WebGLRenderingContext, program: WebGLProgram) => {
+    //顶点数据
     const vertices = new Float32Array([
         0.0, 0.5, -0.5, -0.5, 0.5, -0.5
     ]);
+    const vertexSize = 2;//每个顶点属性的组成数量
+    const vertexBuffer = gl.createBuffer();//创建缓冲区对象
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//将缓冲区对象绑定到目标
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);//向缓冲区对象写入顶点数据
+    const a_Position = gl.getAttribLocation(program, 'a_Position');//获取 a_Position 存储地址
+    gl.vertexAttribPointer(a_Position, vertexSize, gl.FLOAT, false, 0, 0);//将缓冲区对象分配给 a_Position 变量
+    gl.enableVertexAttribArray(a_Position);//连接 a_Position 变量与分配给它的缓冲区对象
 
-    const n = 3;
-
-    //创建缓冲区对象
-    const vertexBuffer = gl.createBuffer();
-    if (!vertexBuffer) {
-        console.error('Failed to create the buffer object');
-        return -1;
-    }
-
-    //将缓冲区对象绑定到目标
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-
-    //向缓冲区对象写入数据
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-
-    const a_Position = gl.getAttribLocation(program, 'a_Position');
-
-    //将缓冲区对象分配给a_Position变量
-    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
-
-    //连接a_Position变量与分配给它的缓冲区对象
-    gl.enableVertexAttribArray(a_Position);
-
-    return n;
+    const vertexCount = vertices.length / vertexSize;
+    return vertexCount;
 };
