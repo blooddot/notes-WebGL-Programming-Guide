@@ -36,7 +36,7 @@ const initVertexBuffers = (gl: WebGLRenderingContext, program: WebGLProgram) => 
     gl.vertexAttribPointer(a_TexCoord, vertexTexCoordSize, gl.FLOAT, false, F_SIZE * vertexSize, F_SIZE * vertexPositionSize);//将缓冲区对象分配给 a_TexCoord 变量
     gl.enableVertexAttribArray(a_TexCoord);//连接 a_TexCoord 变量与分配给它的缓冲区对象
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);    // Unbind the buffer object
+    // gl.bindBuffer(gl.ARRAY_BUFFER, null);    // Unbind the buffer object
 
     const vertexCount = verticesTexCoords.length / vertexSize;//顶点数量
     return vertexCount;

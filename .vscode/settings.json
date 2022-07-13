@@ -4,5 +4,5 @@
     },
     "eslint.alwaysShowStatus": true,
     "eslint.run": "onSave",
-    "livePreview.defaultPreviewPath": "/src/index.html"
+    "livePreview.defaultPreviewPath": "/index.html"
 }
